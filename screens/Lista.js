@@ -11,17 +11,22 @@ const list = [
     {
       name: 'Amy Farha',
       avatar_url: 'https://thumbs.dreamstime.com/b/pessoa-feliz-retrato-de-uma-mulher-sorridente-com-pele-curtida-e-cabelo-encaracolado-jovem-amig%C3%A1vel-belos-cabelos-encaracolados-197501184.jpg',
-      subtitle: 'Vice President'
+      subtitle: '(81) 92222-2222'
     },
     {
       name: 'Chris Jackson',
       avatar_url: 'http://s2.glbimg.com/jsaPuF7nO23vRxQkuJ_V3WgouKA=/e.glbimg.com/og/ed/f/original/2014/06/10/461777879.jpg',
-      subtitle: 'Vice Chairman'
+      subtitle: '(81) 91111-1111'
+    },
+    {
+        name: 'Luiza dos Santos',
+        avatar_url: 'https://cajamar.sp.gov.br/noticias/wp-content/uploads/sites/2/2021/07/site-vacinacao-33-anos.png',
+        subtitle: '(81) 93333-3333'
     }
     
 ]
 
-const Listagem = () => {
+const Listagem = ({navigation}) => {
     return (
         <View style={[styles.container, {
             flexDirection: "column"
@@ -35,27 +40,23 @@ const Listagem = () => {
                             size={15}
                             color="white"
                         /> }
+                    onPress={()=> navigation.navigate('CadastroContato')}
                 />
             </View>
             <View style={{ flex: 2, backgroundColor: "white", paddingLeft: 10 }} >
                 {
                     list.map((l, i) => (
-                        <ListItem key={i} bottomDivider>
+                        <ListItem key={i} bottomDivider  onPress={()=> navigation.navigate('EditarContato')}> 
                             <Avatar source={{ uri: l.avatar_url }} />
                             <ListItem.Content>
                                 <ListItem.Title>{l.name}</ListItem.Title>
                                 <ListItem.Subtitle>{l.subtitle}</ListItem.Subtitle>
-                            </ListItem.Content>
+                            </ListItem.Content> 
                         </ListItem>
                     ))
                 }
             </View>
-            <View style={{ flex: 1, backgroundColor: "white"}} >
-                <Button
-                    title="Cadastrar"
-                />
-            </View>
-
+        
         </View>
     );
 };

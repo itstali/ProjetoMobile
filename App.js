@@ -5,8 +5,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screens/Home';
 import CadastroScreen from './screens/Cadastrar';
 import ListagemScreen from './screens/Lista';
-
-
+import CadastroContatoScreen from './screens/CadastroContato'
+import EditarContatoScreen from './screens/EditarContato';
 
 
 
@@ -19,6 +19,8 @@ return (
 <Stack.Screen name="Home" component={HomeScreen} />
 <Stack.Screen name="Cadastro" component={CadastroScreen} />
 <Stack.Screen name="Lista" component={ListagemScreen} />
+<Stack.Screen name="CadastroContato" component={CadastroContatoScreen} />
+<Stack.Screen name="EditarContato" component={EditarContatoScreen} />
 </Stack.Navigator>
 </NavigationContainer>
 );

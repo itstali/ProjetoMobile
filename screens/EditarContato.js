@@ -8,13 +8,13 @@ import { Button } from 'react-native-elements';
 
 
 
-const Flex3 = ({navigation}) => {
+const EditarContato = ({navigation}) => {
     return (
         <View style={[styles.container, {
             flexDirection: "column"
         }]}>
             <View style={{ flex: 1, backgroundColor: "white", paddingTop: 100, alignItems: "center" }} >
-                <Text h1 style={{ fontSize: 50 }}>Cadastro</Text>
+                <Text h1 style={{ fontSize: 50 }}>Contato</Text>
             </View>
             <View style={{ flex: 2, backgroundColor: "white" }} >
                 <Input
@@ -38,29 +38,24 @@ const Flex3 = ({navigation}) => {
                     }
                 />
                 <Input
-                    placeholder='Senha'
+                    placeholder='Telefone'
                     leftIcon={
                         <Icon
-                            name='lock'
-                            size={30}
-                            color='black'
-                        />
-                    }
-                />
-                <Input
-                    placeholder='CPF'
-                    leftIcon={
-                        <Icon
-                            name='pencil'
+                            name='phone'
                             size={30}
                             color='black'
                         />
                     }
                 />
             </View>
-            <View style={{ flex: 2, backgroundColor: "white", marginTop: 60 }} >
+            <View style={{ flex: 1, backgroundColor: "white" }} >
                 <Button
-                    title="Cadastrar"
+                    title="Alterar"
+                />
+            </View>
+            <View style={{ flex: 1, backgroundColor: "white", marginTop: -60 }} >
+                <Button
+                    title="Excluir"
                 />
             </View>
 
@@ -75,4 +70,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Flex3;
+export default EditarContato;
