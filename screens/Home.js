@@ -11,7 +11,8 @@ import { Button } from 'react-native-elements';
 const Flex2 = ({navigation}) => {
     return (
         <View style={[styles.container, {
-            flexDirection: "column"
+            flexDirection: "column",
+            padding: 0
         }]}>
             <View style={{ flex: 2, backgroundColor: "white", alignItems: 'center', paddingTop: 50 }} >
                 <Avatar

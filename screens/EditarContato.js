@@ -11,7 +11,8 @@ import { Button } from 'react-native-elements';
 const EditarContato = ({navigation}) => {
     return (
         <View style={[styles.container, {
-            flexDirection: "column"
+            flexDirection: "column",
+            padding: 0
         }]}>
             <View style={{ flex: 1, backgroundColor: "white", paddingTop: 100, alignItems: "center" }} >
                 <Text h1 style={{ fontSize: 50 }}>Contato</Text>
@@ -53,7 +54,7 @@ const EditarContato = ({navigation}) => {
                     title="Alterar"
                 />
             </View>
-            <View style={{ flex: 1, backgroundColor: "white", marginTop: -60 }} >
+            <View style={{ flex: 1, backgroundColor: "white", marginTop: -100 }} >
                 <Button
                     title="Excluir"
                 />

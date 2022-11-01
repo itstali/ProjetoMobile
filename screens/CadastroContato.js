@@ -11,7 +11,8 @@ import { Button } from 'react-native-elements';
 const CadastroContato = ({navigation}) => {
     return (
         <View style={[styles.container, {
-            flexDirection: "column"
+            flexDirection: "column",
+            padding: 0
         }]}>
             <View style={{ flex: 1, backgroundColor: "white", paddingTop: 100, alignItems: "center" }} >
                 <Text h1 style={{ fontSize: 30 }}>Cadastro de Contato</Text>

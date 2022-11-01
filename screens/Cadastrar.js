@@ -11,7 +11,9 @@ import { Button } from 'react-native-elements';
 const Flex3 = ({navigation}) => {
     return (
         <View style={[styles.container, {
-            flexDirection: "column"
+            flexDirection: "column",
+            padding: 0,
+            backgroundColor: "white"
         }]}>
             <View style={{ flex: 1, backgroundColor: "white", paddingTop: 100, alignItems: "center" }} >
                 <Text h1 style={{ fontSize: 50 }}>Cadastro</Text>

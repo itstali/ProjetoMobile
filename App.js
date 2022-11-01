@@ -15,10 +15,10 @@ const Stack = createNativeStackNavigator();
 function App() {
 return (
 <NavigationContainer>
-<Stack.Navigator>
+<Stack.Navigator screenOptions={{ headerShown: false }}>
 <Stack.Screen name="Home" component={HomeScreen} />
 <Stack.Screen name="Cadastro" component={CadastroScreen} />
-<Stack.Screen name="Lista" component={ListagemScreen} />
+<Stack.Screen name="Lista" component={ListagemScreen}/>
 <Stack.Screen name="CadastroContato" component={CadastroContatoScreen} />
 <Stack.Screen name="EditarContato" component={EditarContatoScreen} />
 </Stack.Navigator>

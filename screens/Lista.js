@@ -1,62 +1,55 @@
 
 import { StyleSheet, Text, View } from 'react-native';
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Avatar } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
 import { Button } from 'react-native-elements';
-import { ListItem } from 'react-native-elements'
+import { ListItem, Header } from 'react-native-elements'
+import axios from 'axios';
 
-const list = [
-    {
-      name: 'Amy Farha',
-      avatar_url: 'https://thumbs.dreamstime.com/b/pessoa-feliz-retrato-de-uma-mulher-sorridente-com-pele-curtida-e-cabelo-encaracolado-jovem-amig%C3%A1vel-belos-cabelos-encaracolados-197501184.jpg',
-      subtitle: '(81) 92222-2222'
-    },
-    {
-      name: 'Chris Jackson',
-      avatar_url: 'http://s2.glbimg.com/jsaPuF7nO23vRxQkuJ_V3WgouKA=/e.glbimg.com/og/ed/f/original/2014/06/10/461777879.jpg',
-      subtitle: '(81) 91111-1111'
-    },
-    {
-        name: 'Luiza dos Santos',
-        avatar_url: 'https://cajamar.sp.gov.br/noticias/wp-content/uploads/sites/2/2021/07/site-vacinacao-33-anos.png',
-        subtitle: '(81) 93333-3333'
-    }
-    
-]
+const Listagem = ({ navigation }) => {
 
-const Listagem = ({navigation}) => {
+    const [getData, setData] = useState([]);
+
+    useEffect(() => {
+
+        async function resgatarDados() {
+            const result = await axios(
+                'http://professornilson.com/testeservico/clientes',
+            );
+            setData(result.data);
+        }
+        resgatarDados();
+    })
+
     return (
         <View style={[styles.container, {
-            flexDirection: "column"
+            flexDirection: "column",
+            padding: 0 ,
+            backgroundColor: "white"
         }]}>
-            <View style={{ flex: 1, backgroundColor: "white", paddingTop: 20, alignItems: "center", flexDirection: "row" }} >
-                <Text h1 style={{ fontSize: 30, paddingLeft: 50 }}>Lista de Contatos</Text>
-                <Button style={ { paddingLeft: 10}}
-                    icon={
-                        <Icon
-                            name="plus"
-                            size={15}
-                            color="white"
-                        /> }
-                    onPress={()=> navigation.navigate('CadastroContato')}
+             <Header
+                    centerComponent={{ text: 'Lista', style: { color: '#fff', fontSize: 20 } }}
+                    rightComponent={
+                        <Button
+                            title= "+"
+                            onPress={() => navigation.navigate('CadastroContato')}
+                        ></Button>}
                 />
-            </View>
-            <View style={{ flex: 2, backgroundColor: "white", paddingLeft: 10 }} >
-                {
-                    list.map((l, i) => (
-                        <ListItem key={i} bottomDivider  onPress={()=> navigation.navigate('EditarContato')}> 
-                            <Avatar source={{ uri: l.avatar_url }} />
+            {
+                    getData.map((l, i) => (
+                        <ListItem key={i} bottomDivider onPress={() => navigation.navigate('EditarContato')}>
+                            <Avatar source={{ uri: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png" }} />
                             <ListItem.Content>
-                                <ListItem.Title>{l.name}</ListItem.Title>
-                                <ListItem.Subtitle>{l.subtitle}</ListItem.Subtitle>
-                            </ListItem.Content> 
+                                <ListItem.Title>{l.nome}</ListItem.Title>
+                                <ListItem.Subtitle>{l.cpf}</ListItem.Subtitle>
+                            </ListItem.Content>
                         </ListItem>
                     ))
                 }
-            </View>
-        
+            
+
         </View>
     );
 };
