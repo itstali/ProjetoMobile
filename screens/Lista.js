@@ -21,7 +21,7 @@ const Listagem = ({ navigation }) => {
             setData(result.data);
         }
         resgatarDados();
-    })
+    }, [])
 
     return (
         <View style={[styles.container, {
