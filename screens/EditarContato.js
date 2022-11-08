@@ -1,14 +1,61 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import React from "react";
 import { Avatar } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
 import { Button } from 'react-native-elements';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 
+const EditarContato = ({navigation, route}) => {
 
+  const [getNome,setNome] = useState();
+  const [getEmail,setEmail] = useState();
+  const [getTelefone,setTelefone] = useState();
+  const [getId,setId] = useState();
+  const [getAlterar,setAlterar] = useState();
+ 
 
-const EditarContato = ({navigation}) => {
+  useEffect(()=>{
+    if(route.params){
+      const { nome } =  route.params 
+      const { email } = route.params 
+      const { telefone } = route.params
+      const { id } = route.params
+      const { alterar } = route.params
+      
+  
+        setNome(nome);
+        setTelefone(telefone);
+        setEmail(email);
+        setId(id);
+        setAlterar (alterar);
+      
+    }
+        
+    }, [])
+
+    async function editarDados(){
+
+        await axios.put('http://professornilson.com/testeservico/clientes/'+getId, {
+            nome: getNome,
+            email: getEmail,
+            telefone: getTelefone
+          })
+          .then(function (response) {
+            setNome('');
+            setEmail('');
+            setTelefone('');
+            setId('');
+            //navigation.navigate('Cadastro')
+            alert("Alterado com sucesso!");
+          })
+          .catch(function (error) {
+            alert("Ocorreu um erro, por favor tente novamente")
+          });
+         
+      }
+
     return (
         <View style={[styles.container, {
             flexDirection: "column",
@@ -27,9 +74,11 @@ const EditarContato = ({navigation}) => {
                             color='black'
                         />
                     }
+                    onChangeText={text => setNome(text)}
+            value={getNome}
                 />
                 <Input
-                    placeholder='E-mail'
+                    placeholder='Email'
                     leftIcon={
                         <Icon
                             name='envelope'
@@ -37,6 +86,8 @@ const EditarContato = ({navigation}) => {
                             color='black'
                         />
                     }
+                    onChangeText={text => setEmail(text)}
+                    value={getEmail}
                 />
                 <Input
                     placeholder='Telefone'
@@ -47,11 +98,14 @@ const EditarContato = ({navigation}) => {
                             color='black'
                         />
                     }
+                    onChangeText={text => setTelefone(text)}
+                    value={getTelefone}
                 />
             </View>
             <View style={{ flex: 1, backgroundColor: "white" }} >
                 <Button
                     title="Alterar"
+                    onPress={()=>editarDados()}
                 />
             </View>
             <View style={{ flex: 1, backgroundColor: "white", marginTop: -100 }} >

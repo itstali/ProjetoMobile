@@ -1,5 +1,5 @@
 
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View , ScrollView} from 'react-native';
 import React, { useState, useEffect } from "react";
 import { Avatar } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -37,18 +37,25 @@ const Listagem = ({ navigation }) => {
                             onPress={() => navigation.navigate('CadastroContato')}
                         ></Button>}
                 />
-            {
-                    getData.map((l, i) => (
-                        <ListItem key={i} bottomDivider onPress={() => navigation.navigate('EditarContato')}>
+                <ScrollView style={{ backgroundColor: "white", flex: 1 }}>
+            {       
+                    getData.map((linha, i) => (
+                        <ListItem key={i} bottomDivider onPress={() => navigation.navigate('EditarContato', {
+                            nome:linha.nome,
+                            telefone:linha.telefone,
+                            email:linha.email,
+                            id:linha.id,
+                            alterar:true 
+                         })}>
                             <Avatar source={{ uri: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png" }} />
                             <ListItem.Content>
-                                <ListItem.Title>{l.nome}</ListItem.Title>
-                                <ListItem.Subtitle>{l.cpf}</ListItem.Subtitle>
+                                <ListItem.Title>{linha.nome}</ListItem.Title>
+                                <ListItem.Subtitle>{linha.email}</ListItem.Subtitle>
                             </ListItem.Content>
                         </ListItem>
                     ))
                 }
-            
+                </ScrollView>
 
         </View>
     );

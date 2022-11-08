@@ -30,7 +30,7 @@ const Flex3 = ({navigation}) => {
                     }
                 />
                 <Input
-                    placeholder='E-mail'
+                    placeholder='Email'
                     leftIcon={
                         <Icon
                             name='envelope'

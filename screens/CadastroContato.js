@@ -29,7 +29,7 @@ const CadastroContato = ({navigation}) => {
                     }
                 />
                 <Input
-                    placeholder='E-mail'
+                    placeholder='Email'
                     leftIcon={
                         <Icon
                             name='envelope'
